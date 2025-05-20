@@ -1,20 +1,19 @@
-const mongoose=require('mongoose');
+require('dotenv').config();
+const mongoose = require('mongoose');
+
 const DB_URI = process.env.MONGODB_URI;
 
+const dbConnection = async () => {
+  try {
+    console.log("Connecting to MongoDB...");
+    await mongoose.connect(DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB connected successfully!");
+  } catch (error) {
+    console.log("❌ Failed to Connect DB: " + error.message);
+  }
+};
 
-
-/**
- * The function `dbConnection` uses async/await to connect to a database using mongoose and logs a
- * success message if the connection is successful, or an error message if the connection fails.
- */
-
-const dbConnection =async ()=>{
-        try {
-            await mongoose.connect(DB_URI);
-            console.log("DB connected Successful!");
-        } catch (error) {
-            console.log("Failed to Connect DB " +error.message);
-        }
-}
-
-module.exports={dbConnection};
+module.exports = { dbConnection };
