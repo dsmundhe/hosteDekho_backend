@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
-const DB_URI=process.env.MONODB_URI;
+const DB_URI = process.env.MONGODB_URI;
+
 
 
 /**
